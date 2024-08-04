@@ -1,18 +1,27 @@
 #include <stdio.h>
-#include <cs50.h>
 
-int tijolos(int tam)
+int tijolos(int tamanho)
 {
-    for (int i = 0; i < tam; i++)
+    int contador = tamanho;
+    for (int i = 1; i <= tamanho; i++)
     {
-        for (int j = 0; j < tam; j++)
+        for (int j = 1; j <= tamanho; j++)
         {
+            if (j >= contador)
+            {
+                printf("#");
+            }
+            else
+            {
+                printf(".");
+            }
         }
+        printf("\n");
+        contador--;
     }
 }
 
 int main(void)
 {
-    int tamanho = get_int("Tamanho: ");
-    tijolos(tamanho);
+    tijolos(8);
 }
