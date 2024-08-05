@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int montanhaSimples(int tamanho)
+int montanhaDupla(int tamanho)
 {
     int contador = tamanho;
     for (int i = 1; i <= tamanho; i++)
@@ -23,5 +23,5 @@ int montanhaSimples(int tamanho)
 
 int main(void)
 {
-    montanhaSimples(8);
+    montanhaDupla(8);
 }
