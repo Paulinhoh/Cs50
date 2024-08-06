@@ -49,10 +49,4 @@ int main(void)
         lastNumberCard[fim] = auxiliar;
         fim--;
     }
-
-    // multiplicando os numeros impares por 2 e diminuindo 9 se passar de 9
-
-    // somando todos os digitos
-
-    // verificando se o resultado junto com o primeiro digito retirado é multiplo de 10
 }
