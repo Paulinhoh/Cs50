@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 int montanhaDupla(int tamanho)
 {
@@ -43,5 +44,21 @@ int montanhaDupla(int tamanho)
 
 int main(void)
 {
-    montanhaDupla(4);
+    int tamanho = 0;
+    while (true)
+    {
+        printf("Digite o tamanho entre 1 e 8: ");
+        scanf("%d", &tamanho);
+
+        if (tamanho >= 1 && tamanho <= 8)
+        {
+            break;
+        }
+        else
+        {
+            printf("Valor invalido! Tente novamente.\n");
+        }
+    }
+
+    montanhaDupla(tamanho);
 }
