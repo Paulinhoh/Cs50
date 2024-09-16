@@ -24,14 +24,14 @@ Adicionamos outro argumento de linha de comando ou uma entrada para um programa 
 Se quisermos usar a biblioteca do CS50, via #include <cs50.h>, para a função get_string , também temos que adicionar um sinalizador: clang -o hello hello.c -lcs50:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-string nome = get_string("Qual o seu nome?");
-printf("oi, %s\n", nome;
-}
+    int main(void)
+    {
+    string nome = get_string("Qual o seu nome?");
+    printf("oi, %s\n", nome;
+    }
 ```
 
 -   O sinalizador -l vincula o arquivo cs50 , que já está instalado no CS50 IDE, e inclui o código de máquina para get_string (entre outras funções) que nosso programa pode consultar e usar também.
@@ -48,31 +48,31 @@ Compilar o código-fonte em código de máquina é, na verdade, feito em etapas 
 O pré-processamento geralmente envolve linhas que começam com #, como #include. Por exemplo, #include <cs50.h> dirá ao clang para procurar por esse arquivo de cabeçalho, pois ele contém o conteúdo que queremos incluir em nosso programa. Então, o clang irá essencialmente substituir o conteúdo desses arquivos de cabeçalho em nosso programa. Por exemplo …
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-string nome = get_string("Qual o seu nome?");
-printf("oi, %s\n", nome;
-}
+    int main(void)
+    {
+    string nome = get_string("Qual o seu nome?");
+    printf("oi, %s\n", nome;
+    }
 ```
 
 ... será pré-processado em:
 
 ```c
-...
-string get_string(string prompt);
-int printf(string format, ...);
-...
+    ...
+    string get_string(string prompt);
+    int printf(string format, ...);
+    ...
 ```
 
 ```c
-int main(void)
-{
-string nome = get_string("Qual o seu nome?");
-printf("oi, %s\n", nome;
-}
+    int main(void)
+    {
+    string nome = get_string("Qual o seu nome?");
+    printf("oi, %s\n", nome;
+    }
 ```
 
 Isso inclui os protótipos de todas as funções dessas bibliotecas que incluímos, para que possamos usá-las em nosso código.
@@ -80,33 +80,33 @@ Isso inclui os protótipos de todas as funções dessas bibliotecas que incluím
 A compilação pega nosso código-fonte, em C, e o converte em outro tipo de código-fonte chamado código assembly, que se parece com isto:
 
 ```assembly
-...
-main: # @main
-.cfi_startproc
+    ...
+    main: # @main
+    .cfi_startproc
 
-# BB#0:
+    # BB#0:
 
-    pushq    %rbp
+        pushq    %rbp
 
-.Ltmp0:
-.cfi_def_cfa_offset 16
-.Ltmp1:
-.cfi_offset %rbp, -16
-movq %rsp, %rbp
-.Ltmp2:
-.cfi_def_cfa_register %rbp
-subq $16, %rsp
-xorl %eax, %eax
-movl %eax, %edi
-movabsq $.L.str, %rsi
-movb $0, %al
-callq get_string
-movabsq $.L.str.1, %rdi
-movq %rax, -8(%rbp)
-movq -8(%rbp), %rsi
-movb $0, %al
-callq printf
-...
+    .Ltmp0:
+    .cfi_def_cfa_offset 16
+    .Ltmp1:
+    .cfi_offset %rbp, -16
+    movq %rsp, %rbp
+    .Ltmp2:
+    .cfi_def_cfa_register %rbp
+    subq $16, %rsp
+    xorl %eax, %eax
+    movl %eax, %edi
+    movabsq $.L.str, %rsi
+    movb $0, %al
+    callq get_string
+    movabsq $.L.str.1, %rdi
+    movq %rax, -8(%rbp)
+    movq -8(%rbp), %rsi
+    movb $0, %al
+    callq printf
+    ...
 ```
 
 -   Essas instruções são de nível inferior e estão mais próximas das instruções binárias que o processador de um computador pode entender diretamente. Eles geralmente operam nos próprios bytes, em oposição a abstrações como nomes de variáveis.
@@ -132,31 +132,31 @@ Podemos usar outra “ferramenta”, a função printf, para imprimir mensagens 
 Vamos dar uma olhada em buggy0.c:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-// Imprime 10 hashes
-for (int i = 0; i <= 10; i ++)
-{
-printf("# \n");
-}
-}
+    int main(void)
+    {
+    // Imprime 10 hashes
+    for (int i = 0; i <= 10; i ++)
+    {
+    printf("# \n");
+    }
+    }
 ```
 
 -   Hmm, queremos imprimir apenas 10 #s, mas há 11. Se não soubéssemos qual é o problema (já que nosso programa está compilando sem erros e agora temos um erro lógico), poderíamos adicionar outro printf temporariamente:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-for (int i = 0; i <= 10; i ++)
-{
-printf("i vale agora %i\n",i);
-printf("# \ n");
-}
-}
+    int main(void)
+    {
+    for (int i = 0; i <= 10; i ++)
+    {
+    printf("i vale agora %i\n",i);
+    printf("# \ n");
+    }
+    }
 ```
 
 -   Agora, podemos ver que i começou em 0 e continuei até chegar a 10, mas devemos fazer nosso loop for parar quando estiver em 10, com i <10 em vez de i <= 10.
@@ -186,28 +186,28 @@ Para sair do depurador, podemos pressionar control + C para interromper o progra
 Vejamos outro exemplo, buggy1.c:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-// Prototype
-int get_negative_int(void);
+    // Prototype
+    int get_negative_int(void);
 
-int main(void)
-{
-// Pega um número inteiro negativo do usuário
-int i = get_negative_int();
-printf ("%i \n", i);
-}
+    int main(void)
+    {
+    // Pega um número inteiro negativo do usuário
+    int i = get_negative_int();
+    printf ("%i \n", i);
+    }
 
-int get_negative_int(void)
-{
-int n;
-do
-{
-n = get_int ("Número inteiro negativo:");
-} enquanto (n <0);
-return n;
-}
+    int get_negative_int(void)
+    {
+    int n;
+    do
+    {
+    n = get_int ("Número inteiro negativo:");
+    } enquanto (n <0);
+    return n;
+    }
 ```
 
 -   Implementamos outra função, get_negative_int, para obter um número inteiro negativo do usuário. Precisamos lembrar de colocar o protótipo antes de nossa função principal(main) e, em seguida, nosso código é compilado.
@@ -257,15 +257,15 @@ Em C, quando criamos uma variável do tipo char, que terá o tamanho de um byte,
 Digamos que quiséssemos calcular a média de três variáveis:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-int score1 = 72;
-int score2 = 73;
-int score3 = 33;
-printf ("Média: %f \n", (score1 + score2 + score3) / 3.0);
-}
+    int main(void)
+    {
+    int score1 = 72;
+    int score2 = 73;
+    int score3 = 33;
+    printf ("Média: %f \n", (score1 + score2 + score3) / 3.0);
+    }
 ```
 
 -   Dividimos não por 3, mas por 3.0, então o resultado também é um float. <.p>
@@ -286,18 +286,18 @@ E podemos atribuir e usar variáveis ​​em uma matriz com scores[0] = 72. Com
 Vamos atualizar nosso programa para usar um array:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-int scores[3];
-scores[0] = get_int("Pontuação:");
-scores[1] = get_int("Pontuação:");
-scores[2] = get_int("Pontuação:");
-// Imprimir média
-printf ("Média: %f \n", (scores[0] + scores[1] + scores[2]) / 3,0);
-}
+    int main(void)
+    {
+    int scores[3];
+    scores[0] = get_int("Pontuação:");
+    scores[1] = get_int("Pontuação:");
+    scores[2] = get_int("Pontuação:");
+    // Imprimir média
+    printf ("Média: %f \n", (scores[0] + scores[1] + scores[2]) / 3,0);
+    }
 ```
 
 -   Agora, estamos pedindo ao usuário três valores e imprimindo a média como antes, mas usando os valores armazenados no array.
@@ -305,19 +305,19 @@ printf ("Média: %f \n", (scores[0] + scores[1] + scores[2]) / 3,0);
 Como podemos definir e acessar itens em uma matriz com base em sua posição, e essa posição também pode ser o valor de alguma variável, podemos usar um loop:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-int scores[3];
-for (int i = 0; i <3; i ++)
-{
-scores[i] = get_int("Pontuação:");
-}
-// Imprimir média
-printf ("Média:%f\n", (scores[0] + scores[1] + scores[2]) / 3,0);
-}
+    int main(void)
+    {
+    int scores[3];
+    for (int i = 0; i <3; i ++)
+    {
+    scores[i] = get_int("Pontuação:");
+    }
+    // Imprimir média
+    printf ("Média:%f\n", (scores[0] + scores[1] + scores[2]) / 3,0);
+    }
 ```
 
 -   Agora, em vez de codificar permanentemente ou especificar manualmente cada elemento três vezes, usamos um for loop e i como o índice de cada elemento no array.
@@ -325,21 +325,21 @@ printf ("Média:%f\n", (scores[0] + scores[1] + scores[2]) / 3,0);
 E repetimos o valor 3, que representa o comprimento do nosso array, em dois lugares diferentes. Portanto, podemos usar uma constante ou variável com um valor fixo em nosso programa:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-const int TOTAL = 3;
+    const int TOTAL = 3;
 
-int main(void)
-{
-int scores[TOTAL];
-for (int i = 0; i < TOTAL; i ++)
-{
-scores[i] = get_int("Pontuação:");
-}
-// Imprimir média
-printf ("Média: %f \n", (scores[0] + scores[1] + scores[2]) / TOTAL);
-}
+    int main(void)
+    {
+    int scores[TOTAL];
+    for (int i = 0; i < TOTAL; i ++)
+    {
+    scores[i] = get_int("Pontuação:");
+    }
+    // Imprimir média
+    printf ("Média: %f \n", (scores[0] + scores[1] + scores[2]) / TOTAL);
+    }
 ```
 
 -   Podemos usar a palavra-chave const para informar ao compilador que o valor de TOTAL nunca deve ser alterado por nosso programa. E por convenção, colocaremos nossa declaração da variável fora da função principal(main) e colocaremos seu nome em maiúscula, o que não é necessário para o compilador, mas mostra a outros humanos que esta variável é uma constante e torna fácil ver desde o início .
@@ -348,15 +348,15 @@ printf ("Média: %f \n", (scores[0] + scores[1] + scores[2]) / TOTAL);
 Vamos adicionar uma função para calcular a média:
 
 ```c
-float media(int quantidade, int array[])
-{
-int soma = 0;
-for (int i = 0; i < quantidade; i++)
-{
-soma += array[i];
-}
-return soma / (float) quantidade;
-}
+    float media(int quantidade, int array[])
+    {
+    int soma = 0;
+    for (int i = 0; i < quantidade; i++)
+    {
+    soma += array[i];
+    }
+    return soma / (float) quantidade;
+    }
 ```
 
 -   Vamos passar o comprimento e uma matriz de ints (que pode ser de qualquer tamanho) e usar outro loop dentro de nossa função auxiliar para adicionar os valores em uma variável de soma. Usamos (float) para converter o comprimento em um float, então o resultado que obtemos ao dividir os dois também é um float.
@@ -368,13 +368,13 @@ return soma / (float) quantidade;
 Podemos imprimir um único caractere com um programa simples:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-char c = '#';
-printf("%c\n", c);
-}
+    int main(void)
+    {
+    char c = '#';
+    printf("%c\n", c);
+    }
 ```
 
 Quando executamos este programa, obtemos # impresso no terminal.
@@ -382,13 +382,13 @@ Quando executamos este programa, obtemos # impresso no terminal.
 Vamos ver o que acontece se mudarmos nosso programa para imprimir c como um inteiro:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-char c = '#';
-printf("%i\n", (int) c);
-}
+    int main(void)
+    {
+    char c = '#';
+    printf("%i\n", (int) c);
+    }
 ```
 
 -   Quando executamos este programa, obtemos 35 impressos. Acontece que 35 é de fato o código ASCII para um símbolo #.
@@ -401,15 +401,15 @@ Um char é um único byte, então podemos imaginá-lo como sendo armazenado em u
 Podemos imprimir uma string, ou algum texto, criando uma variável para cada caractere e imprimindo-os:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-char c1 = 'H';
-char c2 = 'i';
-char c3 = '!';
-printf("%c%c%c\n", c1, c2, c3);
-}
+    int main(void)
+    {
+    char c1 = 'H';
+    char c2 = 'i';
+    char c3 = '!';
+    printf("%c%c%c\n", c1, c2, c3);
+    }
 ```
 
 -   Aqui, veremos o Hi! impresso.
@@ -417,15 +417,15 @@ printf("%c%c%c\n", c1, c2, c3);
 Agora vamos imprimir os valores inteiros de cada caractere:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-char c1 = 'H';
-char c2 = 'i';
-char c3 = '!';
-printf("%i%i%i\n", c1, c2, c3);
-}
+    int main(void)
+    {
+    char c1 = 'H';
+    char c2 = 'i';
+    char c3 = '!';
+    printf("%i%i%i\n", c1, c2, c3);
+    }
 ```
 
 -   Veremos 72 73 33 impressos e perceberemos que esses caracteres são armazenados na memória da seguinte forma:
@@ -441,14 +441,14 @@ E acontece que uma string termina com um caractere especial, '\0', ou um byte co
 Podemos usar uma string como uma matriz em nosso programa e imprimir os códigos ASCII, ou valores inteiros, de cada caractere da string:
 
 ```c
-#include <stdio.h>
-#include <cs50.h>
+    #include <stdio.h>
+    #include <cs50.h>
 
-int main(void)
-{
-string s = "Hi!";
-printf("%i %i %i %i \n", s[0], s[1], s[2], s[3]);
-}
+    int main(void)
+    {
+    string s = "Hi!";
+    printf("%i %i %i %i \n", s[0], s[1], s[2], s[3]);
+    }
 ```
 
 -   E como poderíamos esperar, vemos 72 73 33 0 impressos.
@@ -457,19 +457,19 @@ printf("%i %i %i %i \n", s[0], s[1], s[2], s[3]);
 Podemos usar um loop para imprimir todos os caracteres em uma string:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-string s = get_string("Input: ");
-printf("Saída: ");
-for (int i = 0; s[i] != '\0'; i++)
-{
-printf("%c", s[i]);
-}
-printf("\n");
-}
+    int main(void)
+    {
+    string s = get_string("Input: ");
+    printf("Saída: ");
+    for (int i = 0; s[i] != '\0'; i++)
+    {
+    printf("%c", s[i]);
+    }
+    printf("\n");
+    }
 ```
 
 Podemos alterar a condição do nosso loop para continuar independentemente do que i seja, mas apenas quando s[i]! = '\0', ou quando o caractere na posição atual em s não for o caractere nulo.
@@ -477,38 +477,38 @@ Podemos alterar a condição do nosso loop para continuar independentemente do q
 Podemos usar uma função que vem com a biblioteca de strings de C , strlen, para obter o comprimento da string para nosso loop:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
-#include <string.h>
+    #include <cs50.h>
+    #include <stdio.h>
+    #include <string.h>
 
-int main(void)
-{
-string s = get_string("Input: ");
-printf("Saída: ");
-for (int i = 0; i < strlen(s); i++)
-{
-printf("%c", s[i]);
-}
-printf("\n");
-}
+    int main(void)
+    {
+    string s = get_string("Input: ");
+    printf("Saída: ");
+    for (int i = 0; i < strlen(s); i++)
+    {
+    printf("%c", s[i]);
+    }
+    printf("\n");
+    }
 ```
 
 Temos a oportunidade de aprimorar o design de nosso programa. Nosso loop foi um pouco ineficiente, pois verificamos o comprimento da string, após cada caractere ser impresso, em nossa condição. Mas como o comprimento da string não muda, podemos verificar o comprimento da string uma vez:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
-#include <string.h>
+    #include <cs50.h>
+    #include <stdio.h>
+    #include <string.h>
 
-int main(void)
-{
-string s = get_string("Input: ");
-printf("Saída:\n");
-for (int i = 0, n = strlen(s); i < n; i++)
-{
-printf("%c\n", s[i]);
-}
-}
+    int main(void)
+    {
+    string s = get_string("Input: ");
+    printf("Saída:\n");
+    for (int i = 0, n = strlen(s); i < n; i++)
+    {
+    printf("%c\n", s[i]);
+    }
+    }
 ```
 
 -   Agora, no início de nosso loop, inicializamos uma variável i e n e lembramos o comprimento de nossa string em n. Então, podemos verificar os valores sem ter que chamar strlen para calcular o comprimento da string a cada vez.
@@ -517,9 +517,9 @@ printf("%c\n", s[i]);
 Podemos declarar uma matriz de duas strings:
 
 ```c
-string words[2];
-words[0] = "HI!";
-words[1] = "BYE!";
+    string words[2];
+    words[0] = "HI!";
+    words[1] = "BYE!";
 ```
 
 E na memória, a matriz de strings pode ser armazenada e acessada com:
@@ -532,27 +532,27 @@ E na memória, a matriz de strings pode ser armazenada e acessada com:
 Agora podemos combinar o que vimos para escrever um programa que pode capitalizar letras:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
-#include <string.h>
+    #include <cs50.h>
+    #include <stdio.h>
+    #include <string.h>
 
-int main(void)
-{
-string s = get_string("Antes: ");
-printf("Depois: ");
-for (int i = 0, n = strlen(s); i < n; i++)
-{
-if (s[i] >= 'a' && s[i] <= 'z')
-{
-printf("%c", s[i] - 32);
-}
-else
-{
-printf("%c", s[i]);
-}
-}
-printf("\n");
-}
+    int main(void)
+    {
+    string s = get_string("Antes: ");
+    printf("Depois: ");
+    for (int i = 0, n = strlen(s); i < n; i++)
+    {
+    if (s[i] >= 'a' && s[i] <= 'z')
+    {
+    printf("%c", s[i] - 32);
+    }
+    else
+    {
+    printf("%c", s[i]);
+    }
+    }
+    printf("\n");
+    }
 ```
 
 -   Primeiro, obtemos uma string s do usuário. Então, para cada caractere na string, se estiver em minúsculas (o que significa que tem um valor entre o de a e z), nós o convertemos em maiúsculas. Caso contrário, apenas imprimiremos.
@@ -561,28 +561,28 @@ printf("\n");
 Acontece que existe outra biblioteca, ctype.h, que podemos usar:
 
 ```c
-#include <cs50.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <string.h>
+    #include <cs50.h>
+    #include <ctype.h>
+    #include <stdio.h>
+    #include <string.h>
 
-int main(void)
-{
-string s = get_string("Antes: ");
-printf("Depois: ");
-for (int i = 0, n = strlen(s); i < n; i++)
-{
-if (islower(s[i]))
-{
-printf("%c", toupper(s[i]));
-}
-else
-{
-printf("%c", s[i]);
-}
-}
-printf("\n");
-}
+    int main(void)
+    {
+    string s = get_string("Antes: ");
+    printf("Depois: ");
+    for (int i = 0, n = strlen(s); i < n; i++)
+    {
+    if (islower(s[i]))
+    {
+    printf("%c", toupper(s[i]));
+    }
+    else
+    {
+    printf("%c", s[i]);
+    }
+    }
+    printf("\n");
+    }
 ```
 
 -   Agora, nosso código está mais legível e provavelmente correto, já que outros escreveram e testaram essas funções para nós.
@@ -590,21 +590,21 @@ printf("\n");
 Podemos simplificar ainda mais, e apenas passar cada caractere para o toupper, já que ele não altera os caracteres não minúsculos:
 
 ```c
-#include <cs50.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <string.h>
+    #include <cs50.h>
+    #include <ctype.h>
+    #include <stdio.h>
+    #include <string.h>
 
-int main(void)
-{
-string s = get_string("Antes: ");
-printf("Depois: ");
-for (int i = 0, n = strlen(s); i < n; i++)
-{
-printf("%c", toupper(s[i]));
-}
-printf("\n");
-}
+    int main(void)
+    {
+    string s = get_string("Antes: ");
+    printf("Depois: ");
+    for (int i = 0, n = strlen(s); i < n; i++)
+    {
+    printf("%c", toupper(s[i]));
+    }
+    printf("\n");
+    }
 ```
 
 Podemos usar as páginas de manual do CS50 para encontrar e aprender sobre as funções comuns da biblioteca. Pesquisando nas páginas de manual, vemos que toupper() é uma função, entre outras, de uma biblioteca chamada ctype, que podemos usar.
@@ -616,20 +616,20 @@ Os nossos próprios programas também podem aceitar argumentos de linha de coman
 Em argv.c, mudamos a aparência de nossa função principal(main):
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(int argc, string argv[])
-{
-if (argc == 2)
-{
-printf("oi, %s\n", argv[1]);
-}
-else
-{
-printf("olá, mundo\n");
-}
-}
+    int main(int argc, string argv[])
+    {
+    if (argc == 2)
+    {
+    printf("oi, %s\n", argv[1]);
+    }
+    else
+    {
+    printf("olá, mundo\n");
+    }
+    }
 ```
 
 -   argc e argv são duas variáveis ​​que nossa função main obterá automaticamente quando nosso programa for executado a partir da linha de comando. argc é a contagem de argumentos , ou número de argumentos, e argv, vetor de argumentos (ou lista de argumentos), uma matriz de strings.
@@ -639,20 +639,20 @@ printf("olá, mundo\n");
 Também podemos imprimir cada caractere individualmente:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
-#include <string.h>
+    #include <cs50.h>
+    #include <stdio.h>
+    #include <string.h>
 
-int main(int argc, string argv[])
-{
-if (argc == 2)
-{
-for (int i = 0, n = strlen(argv[1]); i < n; i++)
-{
-printf("%c\n", argv[1][i]);
-}
-}
-}
+    int main(int argc, string argv[])
+    {
+    if (argc == 2)
+    {
+    for (int i = 0, n = strlen(argv[1]); i < n; i++)
+    {
+    printf("%c\n", argv[1][i]);
+    }
+    }
+    }
 ```
 
 -   Usaremos argv[1][i] para acessar cada caractere no primeiro argumento de nosso programa.
@@ -660,19 +660,19 @@ printf("%c\n", argv[1][i]);
 Acontece que nossa função main também retorna um valor inteiro. Por padrão, nossa função main retorna 0 para indicar que nada deu errado, mas podemos escrever um programa para retornar um valor diferente:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(int argc, string argv[])
-{
-if (argc != 2)
-{
-printf("Argumento ausente\n");
-return 1;
-}
-printf("oi, %s\n", argv[1]);
-return 0;
-}
+    int main(int argc, string argv[])
+    {
+    if (argc != 2)
+    {
+    printf("Argumento ausente\n");
+    return 1;
+    }
+    printf("oi, %s\n", argv[1]);
+    return 0;
+    }
 ```
 
 -   O valor de retorno de main em nosso programa é chamado de código de saída , geralmente usado para indicar códigos de erro. (Vamos escrever o return 0 explicitamente no final do nosso programa aqui, mesmo que tecnicamente não seja necessário.)

@@ -23,11 +23,11 @@ Nesta aula, vimos sobre os seguintes tópicos:
 Hoje vamos aprender uma nova linguagem, C : uma linguagem de programação que tem todos os recursos do Scratch e muito mais, porém talvez um pouco menos amigável, por ser puramente em texto:
 
 ```c
-#include <stdio.h>
-int main(void)
-{
-    printf("olá, mundo");
-}
+    #include <stdio.h>
+    int main(void)
+    {
+        printf("olá, mundo");
+    }
 ```
 
 Embora a princípio tentar absorver todos esses novos conceitos possa parecer como beber de uma mangueira de incêndio - pegando emprestado uma frase do MIT - , tenha certeza de que, no final do semestre, estaremos capacitados e experientes em aprender e aplicar esses conceitos.
@@ -37,8 +37,8 @@ Podemos comparar muitos dos recursos de programação em C aos blocos que já vi
 Em nosso exemplo, embora as palavras sejam novas, as ideias são exatamente as mesmas que os blocos "quando a bandeira verde for clicada" e "diga (olá, mundo)" no Scratch:
 
 ```bash
-when green flag clicked
-say Olá Mundo!
+    when green flag clicked
+    say Olá Mundo!
 ```
 
 Ao escrever o código, podemos considerar as seguintes qualidades:
@@ -64,11 +64,11 @@ Nosso IDE é executado na nuvem e vem com um conjunto padrão de ferramentas, ma
 No IDE, iremos para Arquivo> Novo arquivo e, em seguida, Arquivo> Salvar para salvar nosso arquivo como hello.c, indicando que nosso arquivo será um código escrito em C. Veremos que o nome de nossa guia de fato mudou para hello.c, e agora vamos colar o código que vimos acima:
 
 ```c
-#include <stdio.h>
-int main(void)
-{
-printf("olá, mundo");
-}
+    #include <stdio.h>
+    int main(void)
+    {
+    printf("olá, mundo");
+    }
 ```
 
 Para executar nosso programa, usaremos uma CLI, ou interface de linha de comando, um prompt (um “gatilho”, por assim dizer) ao qual respondemos inserindo comandos de texto. Isso contrasta com a interface gráfica do usuário, ou GUI, como o Scratch, onde temos imagens, ícones e botões além do texto.
@@ -108,7 +108,7 @@ string answer = get_string("Qual é o seu nome?");
 No Scratch, também usamos o bloco “answer” dentro de nossos blocos “join” (“juntar”) e “say”. Em C, faremos isso:
 
 ```c
-printf("olá,% s", resposta);
+    printf("olá,% s", resposta);
 ```
 
 -   O %s é chamado de código de formatação, o que significa apenas que queremos que a função printf substitua uma variável onde está o marcador %s. E a variável que queremos usar é answer, que passamos para printf como outro argumento, separado do primeiro por uma vírgula. (printf ("hello, answer")) iria literalmente imprimir hello, answer sempre.)
@@ -116,13 +116,13 @@ printf("olá,% s", resposta);
 De volta ao IDE CS50, nós implementaremos o que descobrimos:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
-int main(void)
-{
-string answer = get_string("Qual é o seu nome?");
-printf("olá, %s", resposta);
-}
+    #include <cs50.h>
+    #include <stdio.h>
+    int main(void)
+    {
+    string answer = get_string("Qual é o seu nome?");
+    printf("olá, %s", resposta);
+    }
 ```
 
 -   Precisamos dizer ao compilador para incluir a Biblioteca CS50, com #include <cs50.h>, para que possamos usar a função get_string.
@@ -133,7 +133,7 @@ Depois de salvar o arquivo, precisaremos recompilar nosso programa com make hell
 Agora, ./hello executará nosso programa e solicitará nosso nome conforme pretendido. Podemos notar que o próximo prompt é impresso imediatamente após a saída de nosso programa, como em hello, Brian ~ / $ . Podemos adicionar uma nova linha após a saída de nosso programa, de modo que o próximo prompt esteja em sua própria linha, com \n:
 
 ```c
-printf("olá, %s\n" ,resposta);
+    printf("olá, %s\n" ,resposta);
 ```
 
 \n é um exemplo de sequência de escape ou algum texto que na verdade representa algum outro texto.
@@ -143,10 +143,10 @@ printf("olá, %s\n" ,resposta);
 O bloco “quando a bandeira verde for clicada” no Scratch inicia o que consideramos ser o programa principal. Em C, a primeira linha para o mesmo é int main (void), sobre a qual aprenderemos mais nas próximas semanas, seguida por uma chave aberta { e uma chave fechada } , envolvendo tudo o que deveria estar em nosso programa.
 
 ```c
-int main(void)
-{
+    int main(void)
+    {
 
-}
+    }
 ```
 
 -   Aprenderemos mais sobre como podemos modificar essa linha nas próximas semanas, mas, por enquanto, simplesmente usaremos isso para iniciar nosso programa.
@@ -178,8 +178,8 @@ Como o IDE CS50 é um computador virtual na nuvem, também podemos executar coma
 No terminal, podemos digitar ls, abreviação de list, para ver uma lista de arquivos e pastas na pasta atual:
 
 ```bash
-~ / $ ls
-ola\* ola.c
+    ~ / $ ls
+    ola\* ola.c
 ```
 
 -   ola está em verde com um asterisco para indicar que podemos executá-lo como um programa.
@@ -238,17 +238,16 @@ Existem vários operadores matemáticos que podemos usar também:
 Faremos um novo programa, additional.c:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-int x = get_int("x: ");
+    int main(void)
+    {
+    int x = get_int("x: ");
 
-     int y = get_int("y: ");
+        int y = get_int("y: ");
 
-     printf("%i\n", x + y);
-
+        printf("%i\n", x + y);
 }
 ```
 
@@ -259,18 +258,17 @@ int x = get_int("x: ");
 Podemos mudar nosso programa para usar o tipo long:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main (void)
-{
-long x = get_long("x: ");
+    int main (void)
+    {
+    long x = get_long("x: ");
 
-     long y = get_long("y: ");
+        long y = get_long("y: ");
 
-     printf("%li\n", x + y);
-
-}
+        printf("%li\n", x + y);
+    }
 ```
 
 -   Agora podemos digitar inteiros maiores e ver um resultado correto conforme o esperado.
@@ -280,19 +278,18 @@ Sempre que obtivermos um erro durante a compilação, é uma boa ideia rolar par
 Vejamos outro exemplo, truncation.c:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main (void)
-{
-// Pega os números do usuário
-int x = get_int("x: ");
-int y = get_int("y: ");
+    int main (void)
+    {
+    // Pega os números do usuário
+    int x = get_int("x: ");
+    int y = get_int("y: ");
 
-    // Divide x por y
-    float z = x / y;
-    printf("%li\n", x + y);
-
+        // Divide x por y
+        float z = x / y;
+        printf("%li\n", x + y);
 }
 ```
 
@@ -302,7 +299,7 @@ int y = get_int("y: ");
 Para corrigir isso, vamos fazer o casting, ou seja, converter nossos números inteiros para float antes de dividi-los:
 
 ```c
-float z = (float) x / (float) y;
+    float z = (float) x / (float) y;
 ```
 
 O resultado será um float como esperamos e, na verdade, podemos lançar apenas um de x ou y e obter um float também.
@@ -320,10 +317,10 @@ C também suporta açúcar sintático ou expressões abreviadas para a mesma fun
 Podemos traduzir condições, ou blocos “se”, com:
 
 ```c
-if (x < y)
-{
-printf (“x é menor que y\n”);
-}
+    if (x < y)
+    {
+    printf (“x é menor que y\n”);
+    }
 ```
 
 -   Observe que em C, usamos { e } (bem como indentação) para indicar como as linhas de código devem ser aninhadas.
@@ -331,80 +328,80 @@ printf (“x é menor que y\n”);
 Podemos ter condições “if” e “else”:
 
 ```c
-if (x < y)
-{
-printf(“x é menor que y\n”);
-}
-else
-{
-printf(“x não é menor que y\n”);
-}
+    if (x < y)
+    {
+    printf(“x é menor que y\n”);
+    }
+    else
+    {
+    printf(“x não é menor que y\n”);
+    }
 ```
 
 E até mesmo “senão se(else if)”:
 
 ```c
-if (x < y)
-{
-printf(“x é menor que y\n”);
-}
-else if (x > y)
-{
-printf(“x é maior que y\n”);
-}
-else if (x == y)
-{
-printf(“x é igual a y\n”);
-}
+    if (x < y)
+    {
+    printf(“x é menor que y\n”);
+    }
+    else if (x > y)
+    {
+    printf(“x é maior que y\n”);
+    }
+    else if (x == y)
+    {
+    printf(“x é igual a y\n”);
+    }
 ```
 
 -   Observe que, para comparar dois valores em C, usamos ==, dois sinais de igual.
 -   E, logicamente, não precisamos de if (x == y) na condição final, já que esse é o único caso restante, então podemos apenas dizer o contrário com else:
 
 ```c
-if (x < y)
-{
-printf(“x é menor que y\n”);
-}
-else if (x > y)
-{
-printf(“x é maior que y\n”);
-}
-else
-{
-printf(“x é igual a y\n”);
-}
+    if (x < y)
+    {
+    printf(“x é menor que y\n”);
+    }
+    else if (x > y)
+    {
+    printf(“x é maior que y\n”);
+    }
+    else
+    {
+    printf(“x é igual a y\n”);
+    }
 ```
 
 Vamos dar uma olhada em outro exemplo, conditions.c:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-// Usuário entra com o valor de x
-int x = get_int(“x: “);
+    int main(void)
+    {
+    // Usuário entra com o valor de x
+    int x = get_int(“x: “);
 
-     // Usuário entra com o valor de y
-     int y = get_int(“y: “);
+        // Usuário entra com o valor de y
+        int y = get_int(“y: “);
 
-     // Compara x e y
-     if (x < y)
-     {
-         printf(“x é menor que y\n”);
-     }
-     else if (x > y)
-     {
-        printf(“x é maior que y\n”);
-     }
-     else
-     {
-        printf(“x é igual a y\n”);
-     }
+        // Compara x e y
+        if (x < y)
+        {
+            printf(“x é menor que y\n”);
+        }
+        else if (x > y)
+        {
+            printf(“x é maior que y\n”);
+        }
+        else
+        {
+            printf(“x é igual a y\n”);
+        }
 
-}
+    }
 ```
 
 -   Nós incluímos as condições que acabamos de ver, juntamente com duas “chamadas”, ou usos, de get_int para obter x e y do usuário.
@@ -413,25 +410,25 @@ int x = get_int(“x: “);
 Em concorda.c, podemos pedir ao usuário para confirmar ou negar algo:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-// Solicita um caracter para o usuário
-char c = get_char("Você concorda?");
+    int main(void)
+    {
+    // Solicita um caracter para o usuário
+    char c = get_char("Você concorda?");
 
-     // Verifica se concordou
-     if (c == ‘S’ || c == ‘s’)
-     {
-         printf(“Concordo.\n”);
-     }
-     else if (c == ‘N’ || c == ‘n’)
-     {
-        printf(“Não concordo..\n”);
-     }
+        // Verifica se concordou
+        if (c == ‘S’ || c == ‘s’)
+        {
+            printf(“Concordo.\n”);
+        }
+        else if (c == ‘N’ || c == ‘n’)
+        {
+            printf(“Não concordo..\n”);
+        }
 
-}
+    }
 ```
 
 -   Com get_char, podemos obter um único caractere e, como só temos um em nosso programa, parece razoável chamá-lo de c.
@@ -443,10 +440,10 @@ char c = get_char("Você concorda?");
 Podemos traduzir um bloco “para sempre” no Scratch com:
 
 ```c
-while (true)
-{
-printf (“Oi mundo!\n”);
-}
+    while (true)
+    {
+    printf (“Oi mundo!\n”);
+    }
 ```
 
 -   A palavra-chave while (enquanto) requer uma condição, então usamos true como a expressão booleana para garantir que nosso loop seja executado para sempre. while dirá ao computador para verificar se a expressão é avaliada como true(verdadeira) e, em seguida, executar as linhas dentro das chaves. Em seguida, ele repetirá isso até que a expressão não seja mais verdadeira. Nesse caso, true sempre será true, então nosso loop é um loop infinito ou que será executado para sempre.
@@ -454,12 +451,12 @@ printf (“Oi mundo!\n”);
 Poderíamos fazer algo um certo número de vezes com while:
 
 ```c
-int i = 0;
-while (i < 50)
-{
-printf(“Oi mundo!\n”);
-i++;
-}
+    int i = 0;
+    while (i < 50)
+    {
+    printf(“Oi mundo!\n”);
+    i++;
+    }
 ```
 
 -   Criamos uma variável,i, e a definimos como 0. Então, enquanto i é menor que 50, executamos algumas linhas de código, incluindo uma em que adicionamos 1 a i a cada passagem. Dessa forma, nosso loop acabará eventualmente, quando i atingir um valor de 50.
@@ -468,23 +465,23 @@ i++;
 Mesmo que possamos iniciar a contagem em 1, como demonstrado abaixo, por convenção devemos começar em 0:
 
 ```c
-int i = 1;
-while (i <= 50)
-{
-printf(“Oi mundo!\n”);
-i++;
-}
+    int i = 1;
+    while (i <= 50)
+    {
+    printf(“Oi mundo!\n”);
+    i++;
+    }
 ```
 
 Outra solução correta, mas possivelmente menos bem projetada, pode comecar com o contador em 50 e contar para trás:
 
 ```c
-int i = 50;
-while (i > 0)
-{
-printf(“Oi mundo!\n”);
-i--;
-}
+    int i = 50;
+    while (i > 0)
+    {
+    printf(“Oi mundo!\n”);
+    i--;
+    }
 ```
 
 -   Nesse caso, a lógica do nosso loop é mais difícil de raciocinar sem servir a nenhum propósito adicional e pode até mesmo confundir os leitores.
@@ -492,11 +489,11 @@ i--;
 Finalmente, mais comumente, podemos usar a palavra-chave for:
 
 ```c
-int i = 0;
-for (int i = 0; i < 50; i++)
-{
-printf(“Oi mundo!\n”);
-}
+    int i = 0;
+    for (int i = 0; i < 50; i++)
+    {
+    printf(“Oi mundo!\n”);
+    }
 ```
 
 -   Novamente, primeiro criamos uma variável chamada i e a definimos como 0. Em seguida, verificamos que i < 50 toda vez que alcançamos o topo do loop, antes de executar qualquer código interno. Se essa expressão for verdadeira, executamos o código interno. Finalmente, depois de executar o código interno, usamos i++ para adicionar um a i , e o loop se repete.
@@ -509,49 +506,49 @@ Observe que para muitas dessas linhas de código, como condições do tipo if e 
 Podemos escrever um programa que imprime miau(meow) três vezes:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-printf(“miau.\n”);
-printf(“miau.\n”);
-printf(“mmiau.\n”);
-}
+    int main(void)
+    {
+    printf(“miau.\n”);
+    printf(“miau.\n”);
+    printf(“mmiau.\n”);
+    }
 ```
 
 Poderíamos usar um loop for, para não ter que copiar e colar tantas linhas:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-for(int i = 0; i < 3; i++)
-{
-printf(“miau.\n”);
-printf(“miau.\n”);
-printf(“miau.\n”);
-}
-}
+    int main(void)
+    {
+    for(int i = 0; i < 3; i++)
+    {
+    printf(“miau.\n”);
+    printf(“miau.\n”);
+    printf(“miau.\n”);
+    }
+    }
 ```
 
 Podemos mover a linha printf para sua própria função, como nossa própria peça de quebra-cabeça:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-void miau(void)
-{
-printf(“miau.\n”);
-}
+    void miau(void)
+    {
+    printf(“miau.\n”);
+    }
 
-int main(void)
-{
-for(int i = 0; i < 3; i++)
-{
-miau();
-}
-}
+    int main(void)
+    {
+    for(int i = 0; i < 3; i++)
+    {
+    miau();
+    }
+    }
 ```
 
 -   Definimos uma função, miau, acima de nossa função principal(main).
@@ -559,22 +556,22 @@ miau();
 Mas, convencionalmente, nossa função principal(main) deve ser a primeira função em nosso programa, então precisamos de mais algumas linhas:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-void miau(void);
+    void miau(void);
 
-int main(void)
-{
-for(int i = 0; i < 3; i++)
-{
-miau();
-}
-}
+    int main(void)
+    {
+    for(int i = 0; i < 3; i++)
+    {
+    miau();
+    }
+    }
 
-void miau(void)
-{
-printf(“miau.\n”);
-}
+    void miau(void)
+    {
+    printf(“miau.\n”);
+    }
 ```
 
 -   Acontece que precisamos declarar nossa função miau primeiro com um protótipo, antes de usá-lo em main , e realmente defini-lo depois. O compilador lê nosso código-fonte de cima para baixo, então ele precisa saber que o miau existirá posteriormente no arquivo.
@@ -582,22 +579,22 @@ printf(“miau.\n”);
 Podemos até mesmo alterar nossa função de miau para obter alguma entrada, n e miau n vezes:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-void miau(int n);
+    void miau(int n);
 
-int main(void)
-{
-miau(3);
-}
+    int main(void)
+    {
+    miau(3);
+    }
 
-void miau(int n)
-{
-for(int i = 0; i < 3; i++)
-{
-printf(“miau.\n”);
-}
-}
+    void miau(int n)
+    {
+    for(int i = 0; i < 3; i++)
+    {
+    printf(“miau.\n”);
+    }
+    }
 ```
 
 -   O void antes da função miau significa que ela não retorna um valor e, da mesma forma, no geral , não podemos fazer nada com o resultado de miau , então apenas a chamamos.
@@ -607,28 +604,28 @@ A abstração aqui leva a um design melhor, já que agora temos a flexibilidade 
 Vejamos outro exemplo de abstração, get_positive_int.c:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int get_positive_int(void);
+    int get_positive_int(void);
 
-int main(void)
-{
-int i = get_positive_int();
-printf(“%i\n”);
-}
+    int main(void)
+    {
+    int i = get_positive_int();
+    printf(“%i\n”);
+    }
 
-// Solicita um número inteiro positivo ao usuário
-int get_positive_int(void)
-{
-int n;
-do
-{
-n = get_int(“Número positivo: \n”);
-}
-while(n < 1);
-return n;
-}
+    // Solicita um número inteiro positivo ao usuário
+    int get_positive_int(void)
+    {
+    int n;
+    do
+    {
+    n = get_int(“Número positivo: \n”);
+    }
+    while(n < 1);
+    return n;
+    }
 ```
 
 -   Temos nossa própria função que chama get_int repetidamente até que tenhamos algum número inteiro que não seja menor que 1. Com um loop do-while, nosso programa fará algo primeiro, depois verificará alguma condição e repetirá enquanto a condição for verdadeira. Um loop while, por outro lado, verificará a condição primeiro.
@@ -640,72 +637,72 @@ return n;
 Podemos querer um programa que imprima parte de uma tela de um videogame como Super Mario Bros. Em mario.c, podemos imprimir quatro pontos de interrogação, simulando blocos:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-printf(“?????\n”);
-}
+    int main(void)
+    {
+    printf(“?????\n”);
+    }
 ```
 
 Com um loop, podemos imprimir vários pontos de interrogação, seguindo-os com uma única nova linha após o loop:
 
 ```c
-#include <stdio.h>
+    #include <stdio.h>
 
-int main(void)
-{
-for(int i = 0; i < 3; i++)
-{
-printf(“?”);
-}
-printf (“\n”);
-}
+    int main(void)
+    {
+    for(int i = 0; i < 3; i++)
+    {
+    printf(“?”);
+    }
+    printf (“\n”);
+    }
 ```
 
 Podemos obter um número inteiro positivo do usuário e imprimir esse número de pontos de interrogação, usando n para o nosso loop:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-// Pega o valor de n com o usuário
-int n;
-do
-{
-n = get_int(“Largura: “);
-}
-while (n < 1);
-
-    // Imprima pontos de interrogação
-    for(int i = 0; i < n; i++)
+    int main(void)
     {
-         printf(“?”);
+    // Pega o valor de n com o usuário
+    int n;
+    do
+    {
+    n = get_int(“Largura: “);
     }
-    printf(“\n”);
+    while (n < 1);
 
-}
+        // Imprima pontos de interrogação
+        for(int i = 0; i < n; i++)
+        {
+            printf(“?”);
+        }
+        printf(“\n”);
+
+    }
 ```
 
 E podemos imprimir um conjunto bidimensional de blocos com loops aninhados, um dentro do outro:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-for(int i = 0; i < 3; i++)
-{
-for(int j = 0; j < 3; j++)
-{
-printf(“#”);
-}
-printf(“\n”);
-}
-}
+    int main(void)
+    {
+    for(int i = 0; i < 3; i++)
+    {
+    for(int j = 0; j < 3; j++)
+    {
+    printf(“#”);
+    }
+    printf(“\n”);
+    }
+    }
 ```
 
 -   Temos dois loops aninhados, onde o loop externo usa i para fazer tudo que contem 3 vezes, e o loop interno usa j , uma variável diferente, para fazer algo 3 vezes para cada um desses tempos. Em outras palavras, o loop externo imprime 3 linhas, terminando cada uma delas com uma nova linha, e o loop interno imprime 3 colunas, ou caracteres tipo #, sem uma nova linha.
@@ -717,15 +714,15 @@ Nosso computador tem memória, em chips de hardware chamados RAM, memória de ac
 Com imprecision.c , podemos ver o que acontece quando usamos valores flutuantes:
 
 ```c
-#include <cs50.h>
-#include <stdio.h>
+    #include <cs50.h>
+    #include <stdio.h>
 
-int main(void)
-{
-float x = get_float("x: ");
-float y = get_float("y: ");
-printf(“%.50f\n", x / y;);
-}
+    int main(void)
+    {
+    float x = get_float("x: ");
+    float y = get_float("y: ");
+    printf(“%.50f\n", x / y;);
+    }
 ```
 
 -   Com % .50f , podemos especificar o número de casas decimais exibidas.
@@ -737,6 +734,6 @@ printf(“%.50f\n", x / y;);
 
 Na semana passada, quando tínhamos três bits e precisávamos contar mais do que sete (ou 111), adicionamos outro bit para obter oito, 1000 . Mas se tivéssemos apenas três bits disponíveis, não teríamos lugar para o 1 extra . Ele desapareceria e estaríamos de volta a 000. Esse problema é chamado de overflow (“vazamento”) de inteiro, pois um inteiro só pode atingir um tamanho especifico antes de ficar sem bits.
 
-O problema Y2K surgiu porque muitos programas armazenavam o ano civil com apenas dois dígitos, como 98 para 1998 e 99 para 1999. Mas quando o ano 2000 se aproximou, os programas tiveram que armazenar apenas 00, levando a confusão entre os anos 1900 e 2000 .
+O problema Y2K surgiu porque muitos programas armazenavam o ano civil com apenas dois dígitos, como 98 para 1998 e 99 para 1999. Mas quando o ano 2000 se aproximou, os programas tiveram que armazenar apenas 00, levando a confusão entre os anos 1900 e 2000.
 
 Em 2038, também ficaremos sem bits para rastrear o tempo, já que há muitos anos alguns humanos decidiram usar 32 bits como o número padrão de bits para contar o número de segundos desde 1º de janeiro de 1970. Mas com 32 bits representando apenas números positivos, só podemos contar até cerca de quatro bilhões e, em 2038, atingiremos esse limite, a menos que atualizemos o software em todos os nossos sistemas de computador.
