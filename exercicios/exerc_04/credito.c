@@ -52,8 +52,6 @@ int main(void)
     char numberCard[20] = "";
     printf("Digite o numero do cartao (sem espacos): ");
     fgets(numberCard, 20, stdin);
-    // scanf("%19[^\n]s", &numberCard);
-    // fflush(stdin);
 
     if (checkCreditCard(numberCard))
     {
