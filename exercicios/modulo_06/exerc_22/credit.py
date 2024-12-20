@@ -1,4 +1,6 @@
-def checkFlag(numberCard):
+def checkFlag(numberCard:str):
+    checkDigits:str
+    
     if numberCard[0] == '4':
         checkDigits = numberCard[0:1]
     else:
@@ -14,12 +16,12 @@ def checkFlag(numberCard):
         print("INVALID")
 
 
-def checkCreditCard(numberCard):
-    checkDigit = int(numberCard[-1])
-    reverseNumbersWithoutCheckDigit = numberCard[slice(0,-1)][::-1]
+def checkCreditCard(numberCard:str):
+    checkDigit:int = int(numberCard[-1])
+    reverseNumbersWithoutCheckDigit:str = numberCard[slice(0,-1)][::-1]
     
-    vector = []
-    sum = 0
+    vector:list = []
+    sum:int = 0
     for i in reverseNumbersWithoutCheckDigit:
         vector.append(int(i))
     
@@ -38,7 +40,7 @@ def checkCreditCard(numberCard):
 
 def main():
     while(True):
-        numberCard = str(input("Digite os numeros do Cartão: ")).strip().replace("-"," ").replace(" ", "")
+        numberCard:str = str(input("Digite os numeros do Cartão: ")).strip().replace("-"," ").replace(" ", "")
         if numberCard.isnumeric():
             break
         else:
