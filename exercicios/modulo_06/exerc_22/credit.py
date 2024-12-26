@@ -1,4 +1,4 @@
-def checkFlag(numberCard:str):
+def checkFlag(numberCard:str)->None:
     checkDigits:str
     
     if numberCard[0] == '4':
@@ -12,11 +12,11 @@ def checkFlag(numberCard:str):
         print("MASTERCARD")
     elif checkDigits == '4' and (len(numberCard) == 13 or len(numberCard) == 16 or len(numberCard) ==19):
         print("VISA")
-    else: 
+    else:
         print("INVALID")
 
 
-def checkCreditCard(numberCard:str):
+def checkCreditCard(numberCard:str)->bool:
     checkDigit:int = int(numberCard[-1])
     reverseNumbersWithoutCheckDigit:str = numberCard[slice(0,-1)][::-1]
     
